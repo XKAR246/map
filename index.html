@@ -395,7 +395,17 @@ pop.addEventListener("blur", saveData);
 
 window.addEventListener("load", loadData);
 </script>
+window.addEventListener("load", function () {
+  const btn = document.getElementById("addBtn");
+  if (!btn) {
+    alert("❌ Không tìm thấy nút addBtn");
+    return;
+  }
 
+  btn.onclick = function () {
+    alert("✅ Nút ADD đã hoạt động");
+  };
+});
 </body>
  <button id="addBtn"
 style="
@@ -411,6 +421,7 @@ padding:8px 12px;">
 </button>
 
 </html>
+
 
 
 
