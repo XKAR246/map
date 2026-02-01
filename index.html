@@ -293,9 +293,85 @@ document.querySelectorAll('.hotspot').forEach(h => {
   });
 });
 </script>
+<script>
+let dragging = null;
+
+function saveAll() {
+  const data = [];
+  document.querySelectorAll(".hotspot").forEach(h => {
+    const id = h.dataset.id;
+    const pop = document.getElementById(id);
+    data.push({
+      id,
+      top: h.style.top,
+      left: h.style.left,
+      html: pop.innerHTML
+    });
+  });
+  localStorage.setItem("mapData", JSON.stringify(data));
+}
+
+function loadAll() {
+  const data = JSON.parse(localStorage.getItem("mapData") || "[]");
+  if (!data.length) return;
+
+  data.forEach(d => {
+    let h = document.querySelector(`.hotspot[data-id="${d.id}"]`);
+    let p = document.getElementById(d.id);
+
+    if (!h) {
+      h = document.createElement("div");
+      h.className = "hotspot";
+      h.dataset.id = d.id;
+      h.onclick = e => showPopup(e, d.id);
+      document.querySelector(".map").appendChild(h);
+    }
+
+    if (!p) {
+      p = document.createElement("div");
+      p.className = "popup";
+      p.id = d.id;
+      document.querySelector(".map").appendChild(p);
+    }
+
+    h.style.top = d.top;
+    h.style.left = d.left;
+    p.innerHTML = d.html;
+  });
+}
+
+document.addEventListener("mousedown", e => {
+  if (e.target.classList.contains("hotspot")) {
+    dragging = e.target;
+  }
+});
+
+document.addEventListener("mousemove", e => {
+  if (!dragging) return;
+  const rect = document.querySelector(".map").getBoundingClientRect();
+  dragging.style.left = ((e.clientX - rect.left) / rect.width * 100) + "%";
+  dragging.style.top  = ((e.clientY - rect.top) / rect.height * 100) + "%";
+});
+
+document.addEventListener("mouseup", () => {
+  if (dragging) saveAll();
+  dragging = null;
+});
+
+function showPopup(e, id) {
+  document.querySelectorAll(".popup").forEach(p => p.style.display="none");
+  const pop = document.getElementById(id);
+  pop.style.display = "block";
+  pop.style.left = e.target.style.left;
+  pop.style.top  = e.target.style.top;
+}
+
+window.onload = loadAll;
+</script>
 
 </body>
 </html>
+
 
 
 
