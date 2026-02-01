@@ -379,7 +379,7 @@ function loadData() {
     pop.contentEditable = "true";
 pop.contentEditable = "true";
 pop.addEventListener("blur", saveData);
-
+saveData();
     h.onclick = e => {
       e.stopPropagation();
       document.querySelectorAll(".popup").forEach(p => {
@@ -392,35 +392,18 @@ pop.addEventListener("blur", saveData);
     map.appendChild(pop);
   });
 }
-
+<button id="addBtn"
+        style="position:fixed;top:10px;right:10px;z-index:999;">
+  ➕ Thêm chú thích
+</button>
 window.addEventListener("load", loadData);
 </script>
-window.addEventListener("load", function () {
-  const btn = document.getElementById("addBtn");
-  if (!btn) {
-    alert("❌ Không tìm thấy nút addBtn");
-    return;
-  }
 
-  btn.onclick = function () {
-    alert("✅ Nút ADD đã hoạt động");
-  };
-});
 </body>
- <button id="addBtn"
-style="
-position:fixed;
-top:10px;
-right:10px;
-z-index:99999;
-background:red;
-color:white;
-font-size:16px;
-padding:8px 12px;">
-➕ ADD
-</button>
+
 
 </html>
+
 
 
 
