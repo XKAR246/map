@@ -300,10 +300,7 @@ document.querySelectorAll('.hotspot').forEach(h => {
   });
 });
 </script>
-<button id="addBtn"
-        style="position:fixed;top:10px;right:10px;z-index:999;">
-  ➕ Thêm chú thích
-</button>
+
 <script>
 let adding = false;
 
@@ -382,7 +379,7 @@ function loadData() {
     pop.contentEditable = "true";
 pop.contentEditable = "true";
 pop.addEventListener("blur", saveData);
-saveData();
+
     h.onclick = e => {
       e.stopPropagation();
       document.querySelectorAll(".popup").forEach(p => {
@@ -395,10 +392,7 @@ saveData();
     map.appendChild(pop);
   });
 }
-<button id="addBtn"
-        style="position:fixed;top:10px;right:10px;z-index:999;">
-  ➕ Thêm chú thích
-</button>
+</script>
 window.addEventListener("load", loadData);
 </script>
 
@@ -406,6 +400,7 @@ window.addEventListener("load", loadData);
 
 
 </html>
+
 
 
 
