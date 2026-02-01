@@ -3,6 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Bản đồ chú thích</title>
+  <head>
+  <meta charset="utf-8">
+  <title>Map</title>
+
+  <style>
+    .map {
+      position: relative;
+      width: 100%;
+    }
+
+    .hotspot {
+      width: 16px;
+      height: 16px;
+      background: #1e90ff;
+      border-radius: 50%;
+      position: absolute;
+      cursor: move;
+    }
+
+    .popup {
+      position: absolute;
+      background: white;
+      border: 1px solid #333;
+      padding: 6px;
+      display: none;
+      font-size: 13px;
+    }
+  </style>
+
+</head>
 <style>
   body {
     margin: 0;
@@ -266,5 +296,6 @@ document.querySelectorAll('.hotspot').forEach(h => {
 
 </body>
 </html>
+
 
 
