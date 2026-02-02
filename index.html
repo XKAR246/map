@@ -300,6 +300,7 @@ document.querySelectorAll('.hotspot').forEach(h => {
 
     function up() {
       dragging = false;
+      saveData();
       document.removeEventListener('mousemove', move);
       document.removeEventListener('mouseup', up);
     }
@@ -369,7 +370,7 @@ function loadData() {
   const map = document.querySelector(".map-container");
 
   // xoá điểm cũ
-  document.querySelectorAll(".hotspot, .popup").forEach(e => e.remove());
+
 
   data.forEach(d => {
     const h = document.createElement("div");
@@ -383,8 +384,7 @@ function loadData() {
     pop.style.top = d.top;
     pop.innerHTML = d.html;
     pop.contentEditable = "true";
-pop.contentEditable = "true";
-pop.addEventListener("blur", saveData);
+    pop.addEventListener("blur", saveData);
 
     h.onclick = e => {
       e.stopPropagation();
@@ -405,6 +405,7 @@ window.addEventListener("load", loadData);
 
 
 </html>
+
 
 
 
